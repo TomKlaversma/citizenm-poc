@@ -7,7 +7,9 @@
       <p>4 out of 4 hotels are available</p>
       <div class="hotel-card__lowest-offer">
         <span>rooms available from</span>
-        <span class="hotel-card__lowest-offer-price">{{ lowestOffer }}</span>
+        <span class="hotel-card__lowest-offer-price">
+          {{ currencySymbol }}{{ lowestOffer }}
+        </span>
       </div>
       <a href="#" class="hotel-card__cta">view rates</a>
     </div>
@@ -49,6 +51,13 @@ const lowestOffer = computed(() =>
     props.hotel.offers[0].price
   )
 );
+
+// Overwrite the currency if needed
+const currencySymbol = computed(() => {
+  if (props.hotel.locale.currency === "EUR") return "€";
+  if (props.hotel.locale.currency === "GBP") return "£";
+  return `${props.hotel.locale.currency} `;
+});
 </script>
 
 <style scoped lang="scss">
