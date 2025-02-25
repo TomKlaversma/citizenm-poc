@@ -1,7 +1,8 @@
 <template>
   <div class="container">
     <h1>{{ offersCount }} available hotels in Europe</h1>
-    <CurrencySelect />
+
+    <div class="toolbar">Currency: <CurrencySelect /></div>
 
     <div class="hotel-cards">
       <HotelCard
@@ -24,5 +25,12 @@ const offersCount = computed(() => offers.value?.data.length);
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 2rem;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 2rem 0;
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <select v-if="currencies">
-      <option v-for="currency in currencies" :value="currency">
+      <option v-for="currency in currencies" :key="currency" :value="currency">
         {{ currency }}
       </option>
     </select>
