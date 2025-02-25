@@ -1,6 +1,6 @@
 import data from "./data/offers.json";
 
-export default defineEventHandler((event) => {
+export default defineEventHandler(() => {
   return {
     success: true,
     data,
