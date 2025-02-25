@@ -3,7 +3,7 @@
     <img class="hotel-card__image" :src="randomImage" />
     <div class="hotel-card__available-label">Available</div>
     <div class="hotel-card__content">
-      <h2 class="hotel-card__name">{{ hotel.name }}</h2>
+      <h2 class="hotel-card__title">{{ hotel.name }}</h2>
       <p>4 out of 4 hotels are available</p>
       <div class="hotel-card__lowest-offer">
         <span>rooms available from</span>
@@ -75,6 +75,14 @@ const lowestOffer = computed(() =>
     padding: 0.125rem 0.5rem;
     font-size: 0.875rem;
     border-radius: 0.25rem;
+  }
+
+  &__title {
+    font-size: 1.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
   }
 
   &__content {
