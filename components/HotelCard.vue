@@ -4,6 +4,7 @@
     <div class="hotel-card__available-label">Available</div>
     <div class="hotel-card__content">
       <h2 class="hotel-card__name">{{ hotel.name }}</h2>
+      <p>4 out of 4 hotels are available</p>
       <div class="hotel-card__lowest-offer">
         <span>rooms available from</span>
         <span class="hotel-card__lowest-offer-price">{{ lowestOffer }}</span>
@@ -78,6 +79,9 @@ const lowestOffer = computed(() =>
 
   &__content {
     padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
   }
 
   &__lowest-offer {
