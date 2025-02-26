@@ -14,3 +14,10 @@ interface Hotel {
   };
   offers: Offer[];
 }
+
+interface ExchangeRate {
+  base: string;
+  rates: {
+    [key: string]: number;
+  };
+}
