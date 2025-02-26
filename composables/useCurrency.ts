@@ -1,13 +1,20 @@
+import { Currency } from "~/types/enums.";
+
 export default async () => {
   const route = useRoute();
   const { data: exchangeRates } = await useFetch("/api/exchange-rate");
 
   const createReactivePriceByQuery = (
     amount: number,
-    baseCurrencyKey: string
+    baseCurrencyKey: Currency
   ) =>
     computed(() => {
-      const queryCurrencyKey = route.query.currency as string;
+      const queryValue = Array.isArray(route.query.currency)
+        ? route.query.currency[0]
+        : route.query.currency;
+
+      const queryCurrencyKey: Currency =
+        (queryValue as Currency) ?? Currency.Local;
 
       const info = exchangeRates.value?.find(
         ({ base }) => base === baseCurrencyKey
@@ -15,8 +22,10 @@ export default async () => {
 
       if (!info) return amount;
 
-      const currencyKey =
-        queryCurrencyKey === "Local" ? baseCurrencyKey : queryCurrencyKey;
+      const currencyKey: Currency =
+        queryCurrencyKey === Currency.Local
+          ? baseCurrencyKey
+          : queryCurrencyKey;
 
       const newAmount =
         info.rates[currencyKey as keyof typeof info.rates] * amount;

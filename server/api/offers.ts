@@ -1,5 +1,3 @@
 import data from "./data/offers.json";
 
-export default defineEventHandler(() => {
-  return data;
-});
+export default defineEventHandler(() => data);

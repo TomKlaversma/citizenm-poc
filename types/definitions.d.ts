@@ -9,7 +9,7 @@ interface Hotel {
   description: string;
   image: string;
   locale: {
-    currency: string;
+    currency: Currency;
     language: string;
   };
   offers: Offer[];

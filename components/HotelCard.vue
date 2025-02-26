@@ -53,7 +53,7 @@ const randomImage = computed(() => {
 // Grab the lowest offer price from the hotel offers array
 const lowestOffer = computed(() =>
   props.hotel.offers.reduce(
-    (lowest, offer) => Math.min(lowest, offer.price),
+    (lowest: number, offer: Offer) => Math.min(lowest, offer.price),
     props.hotel.offers[0].price
   )
 );
