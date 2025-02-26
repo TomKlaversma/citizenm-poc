@@ -5,11 +5,7 @@
     <div class="toolbar">Currency: <CurrencySelect /></div>
 
     <div class="hotel-cards">
-      <HotelCard
-        v-for="hotel in offers?.data"
-        :key="hotel.name"
-        :hotel="hotel"
-      />
+      <HotelCard v-for="hotel in offers" :key="hotel.name" :hotel="hotel" />
     </div>
   </div>
 </template>
@@ -17,7 +13,7 @@
 <script setup lang="ts">
 const { data: offers } = await useFetch("/api/offers");
 
-const offersCount = computed(() => offers.value?.data.length);
+const offersCount = computed(() => offers.value?.length);
 </script>
 
 <style scoped lang="scss">
