@@ -4,7 +4,7 @@
     <div class="hotel-card__available-label">Available</div>
     <div class="hotel-card__content">
       <h2 class="hotel-card__title">{{ hotel.name }}</h2>
-      <p>4 out of 4 hotels are available</p>
+      <p>{{ hotel.description }}</p>
       <div class="hotel-card__lowest-offer">
         <span>rooms available<br />from</span>
         <span class="hotel-card__lowest-offer-price">
@@ -91,6 +91,14 @@ const lowestOfferPrice = createReactivePriceByQuery(
     border-radius: 0.25rem;
   }
 
+  &__content {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    height: 100%;
+  }
+
   &__title {
     font-size: 1.5rem;
     overflow: hidden;
@@ -99,11 +107,8 @@ const lowestOfferPrice = createReactivePriceByQuery(
     width: 100%;
   }
 
-  &__content {
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+  &__description {
+    margin-bottom: 1rem;
   }
 
   &__lowest-offer {
@@ -116,6 +121,7 @@ const lowestOfferPrice = createReactivePriceByQuery(
     background: var(--light-gray-surface);
     padding: 0.5rem 1rem;
     border-radius: 0.25rem;
+    margin-top: auto;
   }
 
   &__lowest-offer-price {
