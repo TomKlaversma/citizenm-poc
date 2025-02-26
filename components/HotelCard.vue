@@ -6,9 +6,9 @@
       <h2 class="hotel-card__title">{{ hotel.name }}</h2>
       <p>4 out of 4 hotels are available</p>
       <div class="hotel-card__lowest-offer">
-        <span>rooms available from</span>
+        <span>rooms available<br />from</span>
         <span class="hotel-card__lowest-offer-price">
-          {{ currencySymbol }}{{ lowestOffer }}
+          {{ lowestOfferPrice }}
         </span>
       </div>
       <a href="#" class="hotel-card__cta">view rates</a>
@@ -17,6 +17,9 @@
 </template>
 
 <script setup lang="ts">
+import useCurrency from "~/composables/useCurrency";
+
+// Assets
 import image_1 from "~/assets/img/amsterdam.avif";
 import image_2 from "~/assets/img/copenhagen.jpg";
 import image_3 from "~/assets/img/glasgow.jpg";
@@ -24,6 +27,8 @@ import image_4 from "~/assets/img/london.jpg";
 import image_5 from "~/assets/img/rome.webp";
 import image_6 from "~/assets/img/rotterdam.jpg";
 import image_7 from "~/assets/img/zurich.jpg";
+
+const { createReactivePriceByQuery } = await useCurrency();
 
 const props = defineProps<{
   hotel: Hotel;
@@ -53,12 +58,11 @@ const lowestOffer = computed(() =>
   )
 );
 
-// Overwrite the currency if needed
-const currencySymbol = computed(() => {
-  if (props.hotel.locale.currency === "EUR") return "€";
-  if (props.hotel.locale.currency === "GBP") return "£";
-  return `${props.hotel.locale.currency} `;
-});
+// Create a reactive price that is linked to the currency in the query
+const lowestOfferPrice = createReactivePriceByQuery(
+  lowestOffer.value,
+  props.hotel.locale.currency
+);
 </script>
 
 <style scoped lang="scss">
