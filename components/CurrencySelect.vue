@@ -5,6 +5,7 @@
         v-for="currency in currencyOptions"
         :key="currency"
         :value="currency"
+        :selected="currency === selectedCurrency"
       >
         {{ currency }}
       </option>
@@ -23,6 +24,8 @@ const currencyOptions = computed(() => {
   const currencies = exchangeRate.value.map((item) => item.base);
   return ["Local", ...currencies];
 });
+
+const selectedCurrency = computed(() => (query.currency as string) || "Local");
 
 const updateCurrencyParam = (event: Event) => {
   if (!(event.target instanceof HTMLSelectElement)) return;
