@@ -27,6 +27,7 @@ import image_7 from "~/assets/img/zurich.jpg";
 
 const props = defineProps<{
   hotel: Hotel;
+  image: number;
 }>();
 
 // Grab a random image from the images array
@@ -41,7 +42,7 @@ const randomImage = computed(() => {
     image_7,
   ];
 
-  return images[Math.floor(Math.random() * images.length)];
+  return images[props.image % images.length];
 });
 
 // Grab the lowest offer price from the hotel offers array

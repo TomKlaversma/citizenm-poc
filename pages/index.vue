@@ -5,7 +5,12 @@
     <div class="toolbar">Currency: <CurrencySelect /></div>
 
     <div class="hotel-cards">
-      <HotelCard v-for="hotel in offers" :key="hotel.name" :hotel="hotel" />
+      <HotelCard
+        v-for="(hotel, index) in offers"
+        :key="hotel.name"
+        :hotel="hotel"
+        :image="index"
+      />
     </div>
   </div>
 </template>
