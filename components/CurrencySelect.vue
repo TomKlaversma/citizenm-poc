@@ -13,6 +13,6 @@
 const { data: exchangeRate } = await useFetch("/api/exchange-rate");
 
 const currencies = computed(() =>
-  exchangeRate ? exchangeRate.value?.data.map((item) => item.base) : null
+  exchangeRate ? exchangeRate.value?.map((item) => item.base) : null
 );
 </script>
