@@ -4,6 +4,12 @@ export default async () => {
   const route = useRoute();
   const { data: exchangeRates } = await useFetch("/api/exchange-rate");
 
+  const formatPrice = (amount: number, currency: Currency) =>
+    amount.toLocaleString("en-US", {
+      style: "currency",
+      currency,
+    });
+
   const createReactivePriceByQuery = (
     amount: number,
     baseCurrencyKey: Currency
@@ -20,7 +26,7 @@ export default async () => {
         ({ base }) => base === baseCurrencyKey
       );
 
-      if (!info) return amount;
+      if (!info) return formatPrice(amount, baseCurrencyKey);
 
       const currencyKey: Currency =
         queryCurrencyKey === Currency.Local
@@ -30,12 +36,7 @@ export default async () => {
       const newAmount =
         info.rates[currencyKey as keyof typeof info.rates] * amount;
 
-      const formatted = newAmount.toLocaleString("en-US", {
-        style: "currency",
-        currency: currencyKey,
-      });
-
-      return formatted;
+      return formatPrice(newAmount, currencyKey);
     });
 
   return {
