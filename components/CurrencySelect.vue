@@ -16,14 +16,15 @@
 
 <script setup lang="ts">
 import { Currency } from "~/types/enums.";
+import useCurrency from "~/composables/useCurrency";
 
+const { exchangeRates } = await useCurrency();
 const { query } = useRoute();
 const router = useRouter();
-const { data: exchangeRate } = await useFetch("/api/exchange-rate");
 
 const currencyOptions = computed(() => {
-  if (!exchangeRate.value) return [];
-  const currencies = exchangeRate.value.map((item) => item.base);
+  if (!exchangeRates.value) return [];
+  const currencies = exchangeRates.value.map((item) => item.base);
   return [Currency.Local, ...currencies];
 });
 

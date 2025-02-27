@@ -39,6 +39,7 @@ export default async () => {
     });
 
   return {
+    exchangeRates,
     createReactivePriceByQuery,
   };
 };
