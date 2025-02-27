@@ -40,7 +40,8 @@ const updateCurrencyParam = (event: Event) => {
   router.replace({
     query: {
       ...query,
-      currency: event.target.value,
+      currency:
+        event.target.value === Currency.Local ? undefined : event.target.value,
     },
   });
 };
