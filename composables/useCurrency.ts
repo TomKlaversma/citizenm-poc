@@ -34,7 +34,8 @@ export default async () => {
           : queryCurrencyKey;
 
       const newAmount =
-        info.rates[currencyKey as keyof typeof info.rates] * amount;
+        info.rates[currencyKey.toUpperCase() as keyof typeof info.rates] *
+        amount;
 
       return formatPrice(newAmount, currencyKey);
     });
