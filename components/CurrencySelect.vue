@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import { Currency } from "~/types/enums.";
+import { Currency } from "~/types/enums";
 import useCurrency from "~/composables/useCurrency";
 
 const { exchangeRates } = await useCurrency();

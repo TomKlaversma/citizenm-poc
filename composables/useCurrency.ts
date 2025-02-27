@@ -1,4 +1,4 @@
-import { Currency } from "~/types/enums.";
+import { Currency } from "~/types/enums";
 
 export default async () => {
   const route = useRoute();
